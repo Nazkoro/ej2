@@ -1,0 +1,306 @@
+<div class='container-fluid ng-star-inserted'>
+  <div class='control-section employees'>
+    <ejs-grid [dataSource]='data' height='380'
+              [pageSettings]='initialPage'
+              allowPaging='true'
+              [editSettings]='editSettings'
+              [toolbar]='toolbar'
+              (actionBegin)='actionBegin($event)'
+              allowSorting='true'
+              [allowFiltering]='true'
+    >
+      <e-columns>
+        <e-column field='id' headerText='ID' width='110' textAlign='Right' isPrimaryKey='true' [filterTemplate]='filterId'></e-column>
+        <e-column field='surname' headerText='Surname' width='200'></e-column>
+        <e-column field='firstname' headerText='Name' width='200'></e-column>
+<!--        <e-column field='birthdate' headerText='Birthdate' width='200' editType='datepickeredit'-->
+<!--                  format='yMd' type='date' [filterTemplate]='filterBirthdate'></e-column>-->
+        <e-column field='email' headerText='Email' width='300'></e-column>
+        <e-column field='gender' headerText='Gender' width='120' [filterTemplate]='filterGender'></e-column>
+        <e-column field='mobilephone' headerText='Mobile Phone' width='160'></e-column>
+        <e-column field='homephone' headerText='Home Phone' width='160'></e-column>
+        <e-column field='workphone' headerText='Work Phone' width='160'></e-column>
+        <e-column field='emergencycont' headerText='Emergency Contact' width='200'></e-column>
+        <e-column field='emergencynumb' headerText='Emergency Number contact' width='250'></e-column>
+        <e-column field='enable' headerText='Enable' width='150'></e-column>
+        <e-column field='idaddress' headerText='Address ID' width='200' [allowFiltering]="false" [filterTemplate]='filterAddress'></e-column>
+        <e-column field='idcompany' headerText='Company ID' width='150' [allowFiltering]="false" [filterTemplate]='filterCompany'></e-column>
+        <e-column field='idpostaladdress' headerText='Postal Address ID' width='150' [allowFiltering]="false" [filterTemplate]='filterPostalAddress'></e-column>
+        <e-column field='iduser' headerText='User ID' width='150' [allowFiltering]="false" [filterTemplate]='filterUser'></e-column>
+        <e-column field='externalid' headerText='External ID' width='160' [allowFiltering]="false" [filterTemplate]='filterExternal'></e-column>
+        <e-column field='middlename' headerText='Middle Name' width='150'></e-column>
+        <e-column field='payeeid' headerText='Payee ID' width='150' [allowFiltering]="false" [filterTemplate]='filterPayee'></e-column>
+        <e-column field='preferredname' headerText='Preferred Name' width='200'></e-column>
+        <e-column field='title' headerText='Title' width='160'></e-column>
+      </e-columns>
+      <ng-template #editSettingsTemplate let-data>
+        <div [formGroup]='mainForm' class='container-form'>
+          <div class='form-row' *ngIf='updateId'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input id='id' name='id' type='text' disabled='true' [value]='updateId'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='id'>ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='firstname' id='firstname' name='firstname' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='firstname'>Name</label>
+              </div>
+<!--              <div id='firstNameError' [style.visibility]='-->
+<!--                            (( mainForm.controls.[firstname].invalid && (mainForm.controls.firstname.dirty || mainForm.controls.firstname.touched)) ||-->
+<!--                            ( mainForm.controls.firstname.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class='e-error' for='firstNameError' id='firstName-info' style='display: block;'>*First-->
+<!--                  Name is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='surname' id='surname' name='surname' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='surname'>Surname</label>
+              </div>
+<!--              <div id='surnameError' [style.visibility]='-->
+<!--                            (( mainForm.controls.surname.invalid && (mainForm.controls.surname.dirty || mainForm.controls.surname.touched)) ||-->
+<!--                            ( mainForm.controls.surname.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class='e-error' for='surnameError' id='surname-info' style='display: block;'>*Surname-->
+<!--                  is required</label>-->
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+<!--              <ejs-datepicker id='birthdate' formControlName='birthdate' placeholder='Birthdate'-->
+<!--                              floatLabelType='Always'></ejs-datepicker>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='email' id='email' name='email' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='email'>Email</label>
+              </div>
+<!--              <div id="emailError" [style.visibility]='-->
+<!--                            (( mainForm.controls.surname.invalid && (mainForm.controls.email.dirty || mainForm.controls.email.touched)) ||-->
+<!--                            ( mainForm.controls.email.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="emailError" id="email-info" style="display: block;">*Email is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <ejs-dropdownlist id='gender' formControlName='gender'
+                                [dataSource]='genderData'
+                                [fields]="{text: 'genderData', value: 'genderData' }"
+                                placeholder='Gender' popupHeight='300px'
+                                floatLabelType='Always'>
+              </ejs-dropdownlist>
+<!--              <div id="genderError" [style.visibility]='-->
+<!--                            (( mainForm.controls.gender.invalid && (mainForm.controls.gender.dirty || mainForm.controls.gender.touched)) ||-->
+<!--                            ( mainForm.controls.gender.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="genderError" id="gender-info" style="display: block;">*Gender is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='mobilephone' id='mobilephone' name='mobilephone' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='mobilephone'>Mobile Phone</label>
+              </div>
+<!--              <div id="mobilephoneError" [style.visibility]='-->
+<!--                            (( mainForm.controls.mobilephone.invalid && (mainForm.controls.mobilephone.dirty || mainForm.controls.mobilephone.touched)) ||-->
+<!--                            ( mainForm.controls.mobilephone.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="mobilephoneError" id="mobilephone-info" style="display: block;">*Mobile Phone is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='homephone' id='homephone' name='homephone' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='homephone'>Home Phone</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='workphone' id='workphone' name='workphone' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='workphone'>Work Phone</label>
+              </div>
+<!--              <div id="workphoneError" [style.visibility]='visible-->
+<!--                            (( mainForm.controls.workphone.invalid && (mainForm.controls.workphone.dirty || mainForm.controls.workphone.touched)) ||-->
+<!--                            ( mainForm.controls.workphone.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="workphoneError" id="workphone-info" style="display: block;">*Work Phone is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='emergencynumb' id='emergencynumb' name='emergencynumb'
+                       type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='emergencynumb'>Emergency Number
+                  contact</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='enable' id='enable' name='enable' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='enable'>Enable</label>
+              </div>
+<!--              <div id="enableError" [style.visibility]='-->
+<!--                            (( mainForm.controls.enable.invalid && (mainForm.controls.enable.dirty || mainForm.controls.enable.touched)) ||-->
+<!--                            ( mainForm.controls.enable.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="enableError" id="enable-info" style="display: block;">*Enable is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='idaddress' id='idaddress' name='idaddress' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='idaddress'>Address ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='idcompany' id='idcompany' name='idcompany' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='idcompany'>Company ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='idpostaladdress' id='idpostaladdress' name='idpostaladdress'
+                       type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='idpostaladdress'>Postal Address ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='iduser' id='iduser' name='iduser' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='iduser'>User ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='middlename' id='middlename' name='middlename' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='middlename'>Middle Name</label>
+              </div>
+<!--              <div id="middlenameError" [style.visibility]='-->
+<!--                            (( mainForm.controls.middlename.invalid && (mainForm.controls.middlename.dirty || mainForm.controls.middlename.touched)) ||-->
+<!--                            ( mainForm.controls.middlename.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="middlenameError" id="middlename-info" style="display: block;">*Middle Name is required</label>-->
+<!--              </div>-->
+            </div>
+
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='payeeid' id='payeeid' name='payeeid' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='payeeid'>Payee ID</label>
+              </div>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='preferredname' id='preferredname' name='preferredname'
+                       type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='preferredname'>Preferred Name</label>
+<!--              </div>-->
+<!--              <div id="preferrednameError" [style.visibility]='-->
+<!--                            (( mainForm.controls.preferredname.invalid && (mainForm.controls.preferredname.dirty || mainForm.controls.preferredname.touched)) ||-->
+<!--                            ( mainForm.controls.preferredname.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--                <label class="e-error" for="preferrednameError" id="preferredname-info" style="display: block;">*Preferred Name is required</label>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-12'>
+              <div class='e-float-input e-control-wrapper'>
+                <input formControlName='title' id='title' name='title' type='text'>
+                <span class='e-float-line'></span>
+                <label class='e-float-text e-label-top' for='title'>Title</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #filterId></ng-template>
+      <ng-template #filterBirthdate>
+<!--        <ejs-daterangepicker (change)= "onChange($event)"></ejs-daterangepicker>-->
+      </ng-template>
+      <ng-template #filterGender>
+        <ejs-dropdownlist id='genderFilter' [dataSource]='genderData' [fields]="{text: 'genderData', value: 'index' }" (select)='selectGender($event)'></ejs-dropdownlist>
+      </ng-template>
+      <ng-template #filterAddress>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changeAddressFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changeAddressTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+      <ng-template #filterCompany>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changeCompanyFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changeCompanyTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+      <ng-template #filterPostalAddress>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changePostalAddressFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changePostalAddressTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+      <ng-template #filterUser>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changeUserFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changeUserTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+      <ng-template #filterPayee>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changePayeeFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changePayeeTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+      <ng-template #filterExternal>
+        <div class='d-flex'>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='from' class='padding-right-5' (change)='changeExternalFrom($event)'></ejs-numerictextbox>
+          <ejs-numerictextbox [showSpinButton]='false' placeholder='to' (change)='changeExternalTo($event)'></ejs-numerictextbox>
+        </div>
+      </ng-template>
+    </ejs-grid>
+  </div>
+</div>
