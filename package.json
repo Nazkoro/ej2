@@ -74,7 +74,6 @@
     "@syncfusion/ej2-svg-base": "19.4.52",
     "@syncfusion/ej2-treemap": "19.4.52",
     "gulp": "^4.0.2",
-    "ngx-bootstrap": "^8.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
