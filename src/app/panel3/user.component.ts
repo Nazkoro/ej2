@@ -196,14 +196,15 @@ export class UserComponent implements OnInit, OnDestroy {
 
   getEmployee(): void {
     this.userService.getUsers().subscribe(result => {
+      console.log("result", result)
       // this.primengTableHelper.totalRecordsCount = result.totalCount;
       this.data = {
         result: [],
         count: 0
       };
-      result.items.forEach((el: { employee: any; }) => {
+      result.forEach((el: { employee: any; }) => {
         this.data.result.push({
-          ...el.employee,
+          ...el,
           // birthdate: `${el.employee.birthdate.year}-${el.employee.birthdate.month}-${el.employee.birthdate.day}`,
           check: true
         });
@@ -360,10 +361,5 @@ export class UserComponent implements OnInit, OnDestroy {
   changeExternalTo(event: NumberInputEventInterface): void {
     this.minexternalidFilter = event.value;
   }
-  //
-  // onChange(event: any) {
-  //   this.maxbirthdateFilter = event.endDate ? event.endDate : '';
-  //   this.minbirthdateFilter = event.startDate ? event.startDate : '';
-  //   this.getEmployee();
-  // }
+
 }

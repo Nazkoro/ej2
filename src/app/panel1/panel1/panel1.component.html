@@ -1,0 +1,8 @@
+<ejs-grid [dataSource]='data' allowSorting='true' allowPaging='true' allowFiltering='true' [pageSettings]='initialPage' [filterSettings]='filterOptions' [toolbar]='toolbarOptions'  height='470' [editSettings]='editSettings'  >
+  <e-columns>
+    <e-column field='taskID' headerText='Task ID' [isPrimaryKey]='true' textAlign='Right' width=90></e-column>
+    <e-column field='taskName' headerText='Task Name' textAlign='Left' width=180></e-column>
+    <e-column field='priority' headerText='Priority' textAlign='Right' width=90></e-column>
+    <e-column field='duration' headerText='Duration' textAlign='Right' width=80></e-column>
+  </e-columns>
+</ejs-grid>

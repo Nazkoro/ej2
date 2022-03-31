@@ -13,24 +13,8 @@
         <e-column field='id' headerText='ID' width='110' textAlign='Right' isPrimaryKey='true' [filterTemplate]='filterId'></e-column>
         <e-column field='surname' headerText='Surname' width='200'></e-column>
         <e-column field='firstname' headerText='Name' width='200'></e-column>
-<!--        <e-column field='birthdate' headerText='Birthdate' width='200' editType='datepickeredit'-->
-<!--                  format='yMd' type='date' [filterTemplate]='filterBirthdate'></e-column>-->
         <e-column field='email' headerText='Email' width='300'></e-column>
         <e-column field='gender' headerText='Gender' width='120' [filterTemplate]='filterGender'></e-column>
-        <e-column field='mobilephone' headerText='Mobile Phone' width='160'></e-column>
-        <e-column field='homephone' headerText='Home Phone' width='160'></e-column>
-        <e-column field='workphone' headerText='Work Phone' width='160'></e-column>
-        <e-column field='emergencycont' headerText='Emergency Contact' width='200'></e-column>
-        <e-column field='emergencynumb' headerText='Emergency Number contact' width='250'></e-column>
-        <e-column field='enable' headerText='Enable' width='150'></e-column>
-        <e-column field='idaddress' headerText='Address ID' width='200' [allowFiltering]="false" [filterTemplate]='filterAddress'></e-column>
-        <e-column field='idcompany' headerText='Company ID' width='150' [allowFiltering]="false" [filterTemplate]='filterCompany'></e-column>
-        <e-column field='idpostaladdress' headerText='Postal Address ID' width='150' [allowFiltering]="false" [filterTemplate]='filterPostalAddress'></e-column>
-        <e-column field='iduser' headerText='User ID' width='150' [allowFiltering]="false" [filterTemplate]='filterUser'></e-column>
-        <e-column field='externalid' headerText='External ID' width='160' [allowFiltering]="false" [filterTemplate]='filterExternal'></e-column>
-        <e-column field='middlename' headerText='Middle Name' width='150'></e-column>
-        <e-column field='payeeid' headerText='Payee ID' width='150' [allowFiltering]="false" [filterTemplate]='filterPayee'></e-column>
-        <e-column field='preferredname' headerText='Preferred Name' width='200'></e-column>
         <e-column field='title' headerText='Title' width='160'></e-column>
       </e-columns>
       <ng-template #editSettingsTemplate let-data>

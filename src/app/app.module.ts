@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {TreeGridOverviewModule} from "./panel2/treeGridOverview.module";
 import { UserModule } from './panel3/user.module';
 import { HttpClientModule }   from '@angular/common/http';
+import { Panel1Module } from './panel1/panel1.module';
 
 // @ts-ignore
 @NgModule({
@@ -17,7 +18,8 @@ import { HttpClientModule }   from '@angular/common/http';
     AppRoutingModule,
     TreeGridOverviewModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    Panel1Module
   ],
   bootstrap: [AppComponent]
 })
