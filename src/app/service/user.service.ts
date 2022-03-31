@@ -12,28 +12,16 @@ export class UserService{
     return this.http.get<any>(`${this.url}/all`);
   }
 
-  // getUsers(page, limit, PerPage){
-  //   return this.http.get<User[]>(`${this.url}?page=${page}&limit=${limit}&PerPage=${PerPage}`);
-  // }
-  //
-  // getFilteredUsers(model){
-  //   return this.http.post<User[]>(`${this.url}/filter`, model);
-  // }
-  //
-  // createUser(user: User){
-  //   return this.http.post<User>(`${this.url}/create`, user);
-  // }
-  //
-  // login(model: object){
-  //   console.log("cred", model)
-  //   return this.http.post<User>(`${this.url}/auth`, model);
-  // }
-  //
-  // updateUser(user: User) {
-  //   return this.http.put<User>(`${this.url}/update`, user);
-  // }
-  //
-  // deleteUser(id: any){
-  //   return this.http.delete<User>(this.url + '/' + id);
-  // }
+  createUser(user: any){
+    return this.http.post<any>(`${this.url}/create`, user);
+  }
+
+  updateUser(user: any) {
+    return this.http.put<any>(`${this.url}/update`, user);
+  }
+
+  deleteUser(id: any){
+    console.log("service delete id", id);
+    return this.http.delete<any>(this.url + '/' + id);
+  }
 }

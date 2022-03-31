@@ -1,8 +1,88 @@
-<ejs-grid [dataSource]='data' allowSorting='true' allowPaging='true' allowFiltering='true' [pageSettings]='initialPage' [filterSettings]='filterOptions' [toolbar]='toolbarOptions'  height='470' [editSettings]='editSettings'  >
+<ejs-grid [dataSource]='data' (actionBegin)='actionBegin($event)' allowSorting='true' allowPaging='true' allowFiltering='true' [pageSettings]='initialPage' [filterSettings]='filterOptions' [toolbar]='toolbarOptions'  height='470' [editSettings]='editSettings'  >
   <e-columns>
-    <e-column field='taskID' headerText='Task ID' [isPrimaryKey]='true' textAlign='Right' width=90></e-column>
-    <e-column field='taskName' headerText='Task Name' textAlign='Left' width=180></e-column>
-    <e-column field='priority' headerText='Priority' textAlign='Right' width=90></e-column>
-    <e-column field='duration' headerText='Duration' textAlign='Right' width=80></e-column>
+    <e-column field='_id' headerText='Id' [isPrimaryKey]='true'  textAlign='Left' width=90></e-column>
+    <e-column field='username' headerText='username' textAlign='Right' width=90></e-column>
+    <e-column field='email' headerText='email' textAlign='Right' width=80></e-column>
+    <e-column field='country' headerText='country' textAlign='Right' width=80></e-column>
+    <e-column field='city' headerText='city' textAlign='Right' width=80></e-column>
+    <e-column field='year' headerText='year' textAlign='Right' width=80></e-column>
   </e-columns>
+  <ng-template #editSettingsTemplate let-data>
+    <div [formGroup]='mainForm' class='container-form'>
+
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='username' id='username' name='username' type='text'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='username'>username</label>
+          </div>
+<!--          <div id='firstNameError' [style.visibility]='-->
+<!--                            (( mainForm.controls.username.invalid && (mainForm.controls.username.dirty || mainForm.controls.username.touched)) ||-->
+<!--                            ( mainForm.controls.username.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--            <label class='e-error' for='firstNameError' id='firstName-info' style='display: block;'>-->
+<!--              username is required</label>-->
+<!--          </div>-->
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='' id='password' name='password' type='password'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='password'>password</label>
+          </div>
+<!--          <div id='surnameError' [style.visibility]='-->
+<!--                            (( mainForm.controls.password.invalid && (mainForm.controls.password.dirty || mainForm.controls.password.touched)) ||-->
+<!--                            ( mainForm.controls.password.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--            <label class='e-error' for='surnameError' id='surname-info' style='display: block;'>*password-->
+<!--              is required</label>-->
+<!--          </div>-->
+        </div>
+      </div>
+
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='email' id='email' name='email' type='text'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='email'>Email</label>
+          </div>
+<!--          <div id="emailError" [style.visibility]='-->
+<!--                            (( mainForm.controls.email.invalid && (mainForm.controls.email.dirty || mainForm.controls.email.touched)) ||-->
+<!--                            ( mainForm.controls.email.invalid && submitClicked))? "visible": "hidden"'>-->
+<!--            <label class="e-error" for="emailError" id="email-info" style="display: block;">*Email is required</label>-->
+<!--          </div>-->
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='city' id='city' name='city' type='text'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='city'>city</label>
+          </div>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='country' id='country' name='country' type='text'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='country'>country</label>
+          </div>
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class='form-group col-md-12'>
+          <div class='e-float-input e-control-wrapper'>
+            <input formControlName='year' id='year' name='year' type='text'>
+            <span class='e-float-line'></span>
+            <label class='e-float-text e-label-top' for='year'>year</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
 </ejs-grid>
